@@ -30,6 +30,11 @@ let liveSocket = new LiveSocket("/live", Socket, {
   dom: {
     onBeforeElUpdated(from, to) {
       if (from.__x) {
+        console.log("cloning");
+        console.log("\tfrom", from.outerHTML);
+        console.log("\tto", to.outerHTML);
+        console.log("\tisEqualNode", from.isEqualNode(to));
+        console.log("\tisSameNode", from.isSameNode(to));
         window.Alpine.clone(from.__x, to);
       }
     },
