@@ -1,4 +1,9 @@
-import "alpinejs";
+import Alpine from "alpinejs";
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
@@ -29,13 +34,16 @@ let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
   dom: {
     onBeforeElUpdated(from, to) {
-      if (from.__x) {
-        console.log("cloning");
-        console.log("\tfrom", from.outerHTML);
-        console.log("\tto", to.outerHTML);
-        console.log("\tisEqualNode", from.isEqualNode(to));
-        console.log("\tisSameNode", from.isSameNode(to));
-        window.Alpine.clone(from.__x, to);
+      //   if (from.__x) {
+      //     console.log("cloning");
+      //     console.log("\tfrom", from.outerHTML);
+      //     console.log("\tto", to.outerHTML);
+      //     console.log("\tisEqualNode", from.isEqualNode(to));
+      //     console.log("\tisSameNode", from.isSameNode(to));
+      //     window.Alpine.clone(from.__x, to);
+      //   }
+      if (from._x_dataStack) {
+        window.Alpine.clone(from, to);
       }
     },
   },

@@ -20,14 +20,14 @@ defmodule DemoWeb.PageLive do
     ~L"""
       <div x-data>
         <ul>
-          <li id="fixed_item" @click="item_clicked($event)">
+          <li id="fixed_item" x-on:click="item_clicked($event)">
             <div><span>the fixed item</span></div>
           </li>
           <%= for {_, idx} <- @items |> Enum.with_index() do %>
-          <li id="item_<%= idx %>" @click="item_clicked($event)">
+          <li id="item_<%= idx %>" x-on:click="item_clicked($event)">
             <div><span>alpinejs on click li (this one calls the handler twice)</span></div>
           </li>
-          <li x-data id="item_<%= idx %>_scope" @click="item_clicked($event)">
+          <li x-data id="item_<%= idx %>_scope" x-on:click="item_clicked($event)">
             <div><span>alpinejs on click li with x-data on li</span></div>
           </li>
           <li id="item_<%= idx %>_native" onClick="item_clicked(event)">
